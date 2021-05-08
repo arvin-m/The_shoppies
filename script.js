@@ -1,7 +1,5 @@
-
+console.log("CONNECTED")
 const searchBtn = document.querySelector('#search');
-
-
 
 class MOVIE {
     constructor(title, year) {
@@ -136,8 +134,78 @@ function fetchData(Input) {
         });
 
 }
+// Add the search kyword to the header in result container
+const searchTittle = document.querySelector('.result_tittle');
+const inputFormVal = document.querySelector("#input").value;
+const userInput = inputFormVal == "" ? JSON.parse(localStorage.getItem('userInput')) : inputFormVal;
+searchTittle.insertAdjacentHTML('beforeend', ` For ${userInput} `);
+
+// Event for search button
+searchBtn.addEventListener("click", (e) => {
+
+    const inputForm = document.querySelector("#input");
+    const userInput = inputForm.value;
+    // Not alow user to have click on eampty search from
+    if (userInput == "") {
+        return
+    } else {
+        // Save user input in local storage
+        localStorage.setItem('userInput', JSON.stringify(userInput));
+        // Clear the form content after click th esearch button
+        inputForm.value = "";
+        //Send an API request 
+        fetchData(userInput);
+    }
+
+})
+
+// List of movies that choose for nominate
+const nominatedMovieslist = [];
+
+// Event Listener for nominate Button
+document.querySelector('#result_table').addEventListener('click', function (e) {
 
 
+    // Avoid fire the event on every element in the result container
+
+    if (e.target.getAttribute('data-title')) {
+        // const btn=document.querySelector('.nominate')
+        e.target.disabled = true;
+        const title = e.target.getAttribute('data-title');
+        const year = e.target.getAttribute('data-year');
+
+        const nominatedMovies = new MOVIE(title, year);
+        if (!Storage.getNominationMovies() || Storage.getNominationMovies().length < 5) {
+
+            nominatedMovieslist.push(nominatedMovies)
+            MOVIEUI.addnominatedMoviesList(nominatedMovies)
+            Storage.addToNomination(nominatedMovieslist);
+
+        } else {
+            document.getElementById('result_table').style.pointerEvents = 'none'
+            MOVIEUI.alert('You Are Done!', 'info')
+            setTimeout(() => document.querySelector('.alert').remove(), 4000);
+        }
+
+    }
+
+})
+
+// EventListener for Delete Button
+
+document.querySelector('#nominations_table').addEventListener('click', function (e) {
+    // Avoid fire the event on every element in the result container
+    if (e.target.getAttribute('data-title')) {
+        const title = e.target.getAttribute('data-title')
+        const year = e.target.getAttribute('data-year');
+        const movieToDelete = new MOVIE(title, year);
+        Storage.deleteNominatedMovie(movieToDelete);
+        e.target.parentElement.remove()
+    }
+    MOVIEUI.alert('Nominated Movie Deleted!', 'danger');
+    setTimeout(() => document.querySelector('.alert').remove(), 2000);
+
+})
 
 
 

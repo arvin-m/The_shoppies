@@ -7,3 +7,14 @@
 #result_container,#nominations_container{
     background-color: rgba(162, 199, 60, 0.541);
 }
+.btn-secondary{
+    width: fit-content;
+    height:fit-content;
+}
+.avoid-clicks:host(){
+pointer-events: none;
+
+}
+#navbar{
+    background-color: khaki !important;
+}
