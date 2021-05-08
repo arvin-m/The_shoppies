@@ -121,3 +121,27 @@ class Storage {
 
     }
 }
+
+const API_KEY = '8dfb8299';
+// API CALL
+function fetchData(Input) {
+
+    const Url = `http://www.omdbapi.com/?s=${Input}&page=1&apikey=${API_KEY}`;
+    fetch(Url)
+        .then(data => { return data.json() })
+        .then(res => {
+            // Pass the result to the UI
+            Storage.addMovie(res.Search);
+            location.reload();
+        });
+
+}
+
+
+
+
+
+
+
+// Call the Eventlistener to show the movies on the UI
+document.addEventListener('DOMContentLoaded', MOVIEUI.displayMovies);
