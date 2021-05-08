@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSS Bootsrap Link -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<!-- CSS link -->
+<link rel="stylesheet" href="style.css">
+</link>
+
+<!-- Google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+</link>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+</link>
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/f520db768e.js" crossorigin="anonymous"></script>
+
+
+<!-- JS file Link -->
+<script defer type="text/javascript" src="index.js"></script>
+
+<title>Online Movies Store</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-light bg-light" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="utilities/pic/icons8-movie-48.png" alt="" width="60" height="80"
+                    class="d-inline-block align-text-top">
+                <span class="title">The Shoppies</span>
+            </a>
+
+        </div>
+    </nav>
+    <!-- Search Container -->
+    <!-- <div class="container "> -->
+    <div class="container" id="searchContainer">
+        <div class="row mt-5">
+            <label for="inputCity" class="form-label">Movie Title</label>
+            <div class="input-group mb-3">
+                <input type="text" id="input" class="form-control" placeholder="Enter the movie name..."
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="search">Search</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- the main result container -->
+    <div class="container mt-5">
+
+        <div class="row mt-5">
+
+            <div class="col-md-5 me-3" id="result_container">
+                <h5 class="mt-3 result_tittle">Result </h5>
+                <table>
+                    <tbody id="result_table"></tbody>
+                </table>
+            </div>
+
+            <div class="col-md-5" id="nominations_container">
+                <h5 class="mt-3">nominations </h5>
+                <table>
+                    <tbody id="nominations_table"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>

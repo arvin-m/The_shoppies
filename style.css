@@ -1,0 +1,9 @@
+.title {
+    font-family: 'Josefin Sans', sans-serif;;
+    position: relative;
+    top: 20px;
+    color: rgb(48, 150, 190);
+}
+#result_container,#nominations_container{
+    background-color: rgba(162, 199, 60, 0.541);
+}
