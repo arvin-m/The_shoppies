@@ -75,3 +75,49 @@ class MOVIEUI {
     }
 
 }
+
+class Storage {
+    // Get Movies from localStorage
+    static getMovies() {
+        let movies;
+        localStorage.getItem('movies' == null ? movies = [] : movies = JSON.parse(localStorage.getItem('movies')));
+        return movies;
+    }
+    // Add Movies to localStorage
+    static addMovie(movies) {
+        const lists = [];
+        movies.forEach(movie => {
+            const newMovie = new MOVIE(movie.Title, movie.Year);
+            lists.push(newMovie);
+            localStorage.setItem('movies', JSON.stringify(lists));
+        })
+        return lists;
+    }
+
+    static getNominationMovies() {
+        let nominationMovies;
+        localStorage.getItem('nominateMovies' == null ? nominationMovies = [] : nominationMovies = JSON.parse(localStorage.getItem('nominateMovies')));
+        return nominationMovies;
+    }
+
+    static addToNomination(movie) {
+        const nominateList = [];
+        movie.forEach(movie => {
+            nominateList.push(movie);
+            localStorage.setItem('nominateMovies', JSON.stringify(nominateList));
+        })
+        return nominateList;
+    }
+
+    static deleteNominatedMovie(movieToDelete) {
+        const moviesList = Storage.getNominationMovies();
+        const index = (moviesList.findIndex(movie => movie.title == movieToDelete.title && movie.year == movieToDelete.year))
+        if (index > -1) {
+            moviesList.splice(index, 1);
+
+            Storage.addToNomination(moviesList)
+
+        }
+
+    }
+}
