@@ -121,7 +121,7 @@ const API_KEY = '8dfb8299';
 // API CALL
 function fetchData(Input) {
 
-    const Url = `http://www.omdbapi.com/?s=${Input}&page=1&apikey=${API_KEY}`;
+    const Url = `https://www.omdbapi.com/?s=${Input}&page=1&apikey=${API_KEY}`;
     fetch(Url)
         .then(data => { return data.json() })
         .then(res => {
