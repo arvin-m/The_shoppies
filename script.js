@@ -1,4 +1,3 @@
-console.log("CONNECTED")
 const searchBtn = document.querySelector('#search');
 
 class MOVIE {
@@ -64,9 +63,9 @@ class MOVIEUI {
     }
 
     static alert(message, type) {
-        const mainContainer = document.querySelector("#searchContainer");
+        const mainContainer = document.querySelector("#nominations_table");
         const alert = document.createElement('div');
-        alert.className = `alert alert-${type} m-3`;
+        alert.className = `alert alert-${type} mt-3 `;
         alert.role = `alert`;
         alert.innerHTML = message;
         mainContainer.appendChild(alert)
@@ -109,17 +108,15 @@ class Storage {
 
     static deleteNominatedMovie(movieToDelete) {
         const moviesList = Storage.getNominationMovies();
+        
         const index = (moviesList.findIndex(movie => movie.title == movieToDelete.title && movie.year == movieToDelete.year))
         if (index > -1) {
             moviesList.splice(index, 1);
-
-            Storage.addToNomination(moviesList)
-
+            localStorage.setItem('nominateMovies', JSON.stringify(moviesList));
         }
 
     }
 }
-
 const API_KEY = '8dfb8299';
 // API CALL
 function fetchData(Input) {
@@ -165,15 +162,12 @@ const nominatedMovieslist = [];
 // Event Listener for nominate Button
 document.querySelector('#result_table').addEventListener('click', function (e) {
 
-
     // Avoid fire the event on every element in the result container
-
     if (e.target.getAttribute('data-title')) {
         // const btn=document.querySelector('.nominate')
         e.target.disabled = true;
         const title = e.target.getAttribute('data-title');
         const year = e.target.getAttribute('data-year');
-
         const nominatedMovies = new MOVIE(title, year);
         if (!Storage.getNominationMovies() || Storage.getNominationMovies().length < 5) {
 
@@ -184,7 +178,7 @@ document.querySelector('#result_table').addEventListener('click', function (e) {
         } else {
             document.getElementById('result_table').style.pointerEvents = 'none'
             MOVIEUI.alert('You Are Done!', 'info')
-            setTimeout(() => document.querySelector('.alert').remove(), 4000);
+            setTimeout(() => document.querySelector('.alert').remove(), 3000);
         }
 
     }
@@ -200,16 +194,13 @@ document.querySelector('#nominations_table').addEventListener('click', function 
         const year = e.target.getAttribute('data-year');
         const movieToDelete = new MOVIE(title, year);
         Storage.deleteNominatedMovie(movieToDelete);
-        e.target.parentElement.remove()
+        e.target.parentElement.remove();
     }
     MOVIEUI.alert('Nominated Movie Deleted!', 'danger');
     setTimeout(() => document.querySelector('.alert').remove(), 2000);
-
+    
 })
-
-
-
-
 
 // Call the Eventlistener to show the movies on the UI
 document.addEventListener('DOMContentLoaded', MOVIEUI.displayMovies);
+
