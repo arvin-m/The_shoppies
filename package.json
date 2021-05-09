@@ -1,0 +1,23 @@
+{
+  "name": "the_shoppies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvin-m/The_shoppies.git"
+  },
+  "author": "Arvin Mahmoudi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvin-m/The_shoppies/issues"
+  },
+  "homepage": "https://github.com/arvin-m/The_shoppies#readme",
+  "dependencies": {
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1"
+  }
+}
